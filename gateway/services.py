@@ -19,9 +19,9 @@ def generate_payload(real_data: DataEntry) -> typing.Optional[Payload]:
         logger.warning(f'Got invalid time: {real_data["time"]}')
         return
 
-    fake_data = [
-        [real_data['device_id'], real_data['temperature'], real_data['humidity'], real_data['time']]
-    ]
+    fake_data = []
+        # [real_data['device_id'], real_data['temperature'], real_data['humidity'], real_data['time']]
+    # ]
 
     for timestamp in random_times_from_range(real_dt, 15, config.FAKE_SENSORS_COUNT):
         fake_data.append(
