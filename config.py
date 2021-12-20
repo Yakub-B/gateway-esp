@@ -1,4 +1,9 @@
+import logging
+
 from decouple import config
+
+
+logging.basicConfig(level=logging.INFO)
 
 
 MQTT_HOST = config('MQTT_HOST')
