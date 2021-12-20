@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 def connect_mqtt(on_connect: typing.Callable = None) -> mqtt_client.Client:
     logger.info(f'Trying to connect to broker: {config.MQTT_HOST}:{config.MQTT_PORT}')
 
-    client = mqtt_client.Client('is_this_relevant?')
+    client = mqtt_client.Client(config.MQTT_CLIENT_ID)
     client.username_pw_set(config.MQTT_USERNAME, config.MQTT_PASSWD)
     if on_connect:
         client.on_connect = on_connect
