@@ -1,5 +1,5 @@
 import logging
-
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -14,4 +14,5 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
-    logger.info(f'Received message - {msg.payload.decode()}')
+    data = json.loads(msg.payload.decode())
+    logger.info(f'Received message - {data}')
