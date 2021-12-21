@@ -19,3 +19,5 @@ WS_API_KEY = config('WS_API_KEY', default='123')
 WS_PAYLOAD_ENDPOINT = 'iot/cw/big-data-service/api/measurements'
 
 FAKE_SENSORS_COUNT = config('FAKE_SENSORS_COUNT', cast=int, default=20)
+
+DT_FORMAT = '%Y-%m-%d %H:%m:%S'

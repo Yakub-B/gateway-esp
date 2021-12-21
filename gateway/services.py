@@ -13,20 +13,23 @@ logger = logging.getLogger(__name__)
 
 
 def generate_payload(real_data: DataEntry) -> typing.Optional[Payload]:
-    try:
-        real_dt = datetime.fromtimestamp(real_data['time'])
-    except TypeError:
-        logger.warning(f'Got invalid time: {real_data["time"]}')
-        return
+    # try:
+    #     real_dt = datetime.fromtimestamp(real_data['time'])
+    # except TypeError:
+    #     logger.warning(f'Got invalid time: {real_data["time"]}')
+    #     return
+
+    real_dt = datetime.now()
 
     fake_data = []
-        # [real_data['device_id'], real_data['temperature'], real_data['humidity'], real_data['time']]
-    # ]
 
-    for timestamp in random_times_from_range(real_dt, 15, config.FAKE_SENSORS_COUNT):
+    with open('gateway/fixtures/macs.json') as f:
+        macs = json.load(f)
+
+    for idx, timestamp in enumerate(random_times_from_range(real_dt, 15, config.FAKE_SENSORS_COUNT)):
         fake_data.append(
             [
-                random_mac_address(),
+                macs[idx],
                 random_temp(real_data['temperature']),
                 random_humidity(real_data['humidity']),
                 timestamp,
